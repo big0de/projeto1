@@ -10,8 +10,9 @@ import profileSuccess from '../mocks/profileSuccess.json';
 import esferas from '../mocks/esferas.json';
 import esferasSuccess from '../mocks/esferasSuccess.json';
 
-const profileBalls = true ? profileSuccess.profile : profile.profile
-const dragonBalls = true ? esferasSuccess : esferas
+const profileBalls = process.env.REACT_APP_PROFILE === 'SUCCESSO' ? profileSuccess.profile : profile.profile
+const dragonBalls = process.env.REACT_APP_PROFILE === 'SUCCESSO' ? esferasSuccess : esferas
+
 
 const Manager = () => {
   return (

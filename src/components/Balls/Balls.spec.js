@@ -49,3 +49,21 @@ it('Should filter', async () => {
     // expect(getAllByText('Encontrada')).toBe(3).not.toBeInTheDocument()
   })
 })
+
+it('Should validate sphere', () => {
+  const { debug, getAllByText, getByText, container, getByPlaceholderText } = render(<Balls balls={esferas.balls} profile={profile} />)
+  const findButton = getAllByText('encontrei')
+  const oldspheresNumber = getAllByText('Encontrada').length
+
+  fireEvent.click(findButton[0])
+
+  const validateButton = getByText('Validar')
+  expect(validateButton).toBeTruthy()
+
+  const inputNumber = getByPlaceholderText('Ex: 23412')
+  fireEvent.change(inputNumber, { target: { value: '1234' } })
+  fireEvent.click(validateButton)
+
+  expect(getAllByText('Encontrada').length).toBeGreaterThan(oldspheresNumber)
+
+})
